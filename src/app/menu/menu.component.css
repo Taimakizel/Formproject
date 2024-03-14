@@ -1,0 +1,28 @@
+.list {
+    font-size: 25px;
+    padding: 13px;
+    background-color: #d7d9cc;
+    text-align: center;
+    display:flex ;
+    align-items: center;
+    justify-content: center;
+}
+
+.listLink {
+    text-decoration: none;
+    padding: 16px;
+    color: black;
+    
+}
+.listLink.active{
+    text-decoration: none;
+    padding: 16px;
+    color:black;
+    background-color: #e9ebdf;
+    border-bottom: 3px solid black;
+}
+
+.listLink:hover {
+        background-color: #e9ebdf;
+        border-bottom: 3px solid black;
+    }

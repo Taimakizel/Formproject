@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <title>my project</title>
+</head>
+<body>
+    <form class="form" (ngSubmit)="onPay(formBody)" #formBody="ngForm">
+        <h1>Payment Details</h1><br>
+        <label>Username:</label>
+        <input name="name" #name="ngModel" ngModel type="text" placeholder="Enter your full name" required pattern="[A-Za-z]+\s[A-Za-z]+">
+        <p *ngIf="name.invalid && name.touched" [ngStyle]="{'color':'red'}">Name can not be empty</p>
+        <br>
+        <label>Email:</label>
+        <input (change)="function($event)"  name="Email"  ngModel type="text" placeholder="Enter your Email">
+        <p *ngIf="!isValid"> Invalid Email Need @ !!!</p>
+        <br>
+        <div class="input-group" ngModelGroup="PhoneDetails" #PhoneData="ngModelGroup">
+            <label>Phone:</label><br>
+            <input class="in" name="Prephone"  ngModel type="tel" maxlength="3" placeholder="Prefix" required pattern="[0-9]*">
+            <input name="Phone" ngModel type="tel" maxlength="9" placeholder="Enter your phone number" required pattern="[0-9]*">
+        </div>
+        <p *ngIf="PhoneData.invalid && PhoneData.touched" [ngStyle]="{'color':'red'}">Invalid Phone number</p>
+        <br>
+        <label>Card:</label>
+        <input #card="ngModel" name="card" ngModel type="text" placeholder="Enter your credit card number" required pattern="\d{4}\s?\d{4}\s?\d{4}\s?\d{4}" maxlength="19">
+        <p *ngIf="card.invalid && card.touched" [ngStyle]="{'color':'red'}">Invalid Credit card</p>
+        <br>
+        <br>
+        <button type="submit" [disabled]="!formBody.valid">Pay</button>
+    </form>
+</body>
+</html>
