@@ -1,28 +1,19 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-interface Pokemon {
-  name: string;
-  url: string;
-}
 
-interface PokemonListResponse {
-  count: number;
-  next: string;
-  previous: string;
-  results: Pokemon[];
-}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  pokemonList: Pokemon[] = [];
+  pokemonList: { name: string, url: string }[] = [];
   nextLink: string = '';
   prevLink: string = '';
+  
 
-  constructor(private httpClient: HttpClient) {
-    httpClient.get<PokemonListResponse>('https://pokeapi.co/api/v2/pokemon')
+  constructor(public httpClient: HttpClient) {
+    httpClient.get<any>('https://pokeapi.co/api/v2/pokemon')
       .subscribe(response => {
         this.pokemonList = response.results;
         this.nextLink = response.next;
@@ -32,7 +23,7 @@ export class HomeComponent {
 
   loadNext(): void {
     if (this.nextLink) {
-      this.httpClient.get<PokemonListResponse>(this.nextLink)
+      this.httpClient.get<any>(this.nextLink)
         .subscribe(response => {
           this.pokemonList = response.results;
           this.nextLink = response.next;
@@ -43,7 +34,7 @@ export class HomeComponent {
 
   loadPrevious(): void {
     if (this.prevLink) {
-      this.httpClient.get<PokemonListResponse>(this.prevLink)
+      this.httpClient.get<any>(this.prevLink)
         .subscribe(response => {
           this.pokemonList = response.results;
           this.nextLink = response.next;
@@ -51,5 +42,4 @@ export class HomeComponent {
         });
     }
   }
-
 }
