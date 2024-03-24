@@ -1,0 +1,14 @@
+<div style="text-align:center">
+    <h1>
+      Welcome to PokeAPI Viewer!
+    </h1>
+    <div class="pokemon-container">
+      <div *ngFor="let pokemon of pokemonList" class="pokemon-item">
+        <img [src]="'https://img.pokemondb.net/sprites/sword-shield/icon/' + pokemon.name + '.png'" >
+        <p>{{pokemon.name}}</p>
+      </div>
+    </div>
+    <button (click)="loadPrevious()" [disabled]="!prevLink">Previous</button>
+    <button (click)="loadNext()" [disabled]="!nextLink">Next</button>
+  </div>
+  

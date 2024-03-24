@@ -6,6 +6,7 @@ import { BuyComponent } from './buy/buy.component';
 import { MenuComponent } from './menu/menu.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRouting: Routes = [
   {path: "", component: HomeComponent},
@@ -22,7 +23,8 @@ const appRouting: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRouting),
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
